@@ -1,0 +1,24 @@
+{% extends 'main.html' %} {% block content %}
+<section class="postcontainer">
+  <div class="container">
+    <div class="post-grids">
+      {% for post in posts %}
+      <div class="posts">
+        <div class="postimage">
+          {% if post.image %}
+          <a href="{% url 'blog' post.id %}"
+            ><img src="{{post.image.url}}" alt=""
+          /></a>
+          {% endif %}
+        </div>
+        <div class="post-details">
+          <a href="{% url 'blog' post.id %}"><p>{{post.caption}}</p></a>
+        </div>
+        <a href="{% url 'updatepost' post.id %}">Edit</a>
+        <a href="{% url 'deletepost' post.id %}">Delete</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock content %}
