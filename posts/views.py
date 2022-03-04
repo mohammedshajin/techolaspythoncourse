@@ -17,11 +17,13 @@ def blog(request, pk):
     return render(request, 'blog.html', context)
 
 def createpost(request):
+    user = request.user
     form = PostForm()
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save()
+            post.user = user
             post.save()
             return redirect('home')
 

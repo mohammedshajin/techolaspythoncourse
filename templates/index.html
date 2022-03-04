@@ -13,9 +13,13 @@
         </div>
         <div class="post-details">
           <a href="{% url 'blog' post.id %}"><p>{{post.caption}}</p></a>
+          <a href="{% url 'blog' post.id %}"><p>{{post.user}}</p></a>
+
         </div>
+        {% if request.user.id == post.user.id %}
         <a href="{% url 'updatepost' post.id %}">Edit</a>
         <a href="{% url 'deletepost' post.id %}">Delete</a>
+        {% endif %}
       </div>
       {% endfor %}
     </div>
